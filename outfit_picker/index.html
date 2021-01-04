@@ -1,0 +1,131 @@
+
+<html>
+<head>
+    <style>
+        img{
+            height: 30vh;
+        }
+        .border{
+          border-style: solid;
+          border-width: 7px;
+          margin: 0;
+          padding: 3vh 10vw;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 7px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+      border: 2px solid #555555;
+      font-family: "Lucida Console", "Courier New", monospace;
+
+    }
+    .center{
+        transform: translate(100%, 50%);
+    }
+    h1{
+      text-align: center;
+      text-decoration: underline;
+    }
+    h3{
+      text-align: center;
+    }
+
+
+
+    .button:hover {
+      background-color: #555555;
+      color: white;
+    }
+
+    </style>
+    <script>
+        //Global program remembers the postion of the list
+        var topCounter = 0; //initialize to 0 but we can increment from the funtions
+        var bottomCounter = 0;
+        var shirts = ["Girls/shirt1.png","Girls/shirt3.png","Girls/shirt4.png"];
+        var pants = ["Girls/pant1.png","Girls/pant2.png","Girls/pant3.png","Girls/pant4.jpg"];
+
+        function nextTop(){
+            topCounter = topCounter + 1
+            //create a list of all the shirts
+            if(topCounter == shirts.length){ //if the top counter is the last photo reset its position to the first photo
+                topCounter = 0
+            }
+
+
+            //pick the next shirt in the list
+            document.getElementById("top").src = shirts[topCounter];
+
+
+        }
+        function nextBottom(){
+            bottomCounter = bottomCounter + 1
+
+            //create a list of all the shirts
+            if(bottomCounter == pants.length){
+                bottomCounter = 0
+            }
+
+            //pick the next shirt in the list
+            document.getElementById("bottom").src = pants[bottomCounter]
+        }
+        function nextBottom(){
+            bottomCounter = bottomCounter - 1
+
+            //create a list of all the shirts
+            if(bottomCounter == -1){
+                bottomCounter = pants.length -1
+            }
+
+            //pick the next shirt in the list
+            document.getElementById("bottom").src = pants[bottomCounter]
+        }
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+        }
+
+        function randomize(){
+            var randomNumberTop = getRandomIntInclusive(0, shirts.length-1);
+            var randomNumberBottom = getRandomIntInclusive(0, shirts.length-1);
+            document.getElementById("top").src = shirts[randomNumberTop];
+            document.getElementById("bottom").src = pants[randomNumberBottom];
+
+        }
+
+
+    </script>
+</head>
+<body>
+  <div class = "border">
+    <h1> Outfit Picker <h1>
+      <h3> inspired by the movie clueless </h3>
+  <button class = "button"onClick = "nextTop()">before</button>
+    <img id = "top" src = "Girls/shirt1.png">
+    <button class = "button"onClick = "nextTop()">next</button>
+    <br/>
+    <button class = "button"onClick = "nextTop()">before</button>
+    <img id = "bottom" src = "Girls/pant1.png">
+    <button class = "button" onClick= "nextBottom()">next</button>
+    <br>
+    <br>
+    <button class = "button center" onClick= "randomize()">Randomize</button>
+
+  </div>
+</body>
+</html>
